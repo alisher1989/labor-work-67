@@ -15,4 +15,4 @@ function IntervalCreateDiv() {
    var parentDiv = document.getElementById('container');
    parentDiv.appendChild(toAdd);
 }
-setInterval(IntervalCreateDiv, 3000);
+setInterval(IntervalCreateDiv, 5000);
