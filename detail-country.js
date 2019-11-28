@@ -1,27 +1,26 @@
+const indexLink = "?fields=name;capital;alpha3Code;region;area;subregion;population;";
 const container = $('.container');
 let detailLink = "https://restcountries.eu/rest/v2/alpha/";
 const urlParams = new URLSearchParams(window.location.search);
 
 
 function renderData(data) {
-    let values = Object.values(data);
-    for (countryValues of values) {
+    Object.entries(data).forEach(function ([key,value]) {
+        console.log(`${key}: ${value}`);
         let countryDiv = $(document.createElement('div'));
-        countryDiv.addClass('element');
-        countryDiv.append(countryValues);
-        container.append(countryDiv);
-    }
-    // for (let i = 0; i < data; i++) {
-    //     let countryDiv = $(document.createElement('div'));
-    //     countryDiv.addClass('element');
-    //     countryDiv.append(data[i].name);
-    //     container.append(countryDiv);
-    // }
+        let countryB = $(document.createElement('b'));
+        countryB.append(key);
+        countryDiv.append(countryB);
+        countryDiv.append(" : ");
+        countryDiv.append(value);
+        container.append(countryDiv)
+
+    });
 }
 
 function parseUrl() {
     let param = urlParams.get('code');
-    return detailLink + param
+    return detailLink + param + indexLink
 }
 
 function jqueryParseData(response, status) {
